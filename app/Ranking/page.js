@@ -1,8 +1,9 @@
 import Image from 'next/image'
 import MyNav from '@/components/Navbar'
 const getComments= async () => {
+  const apiUrl=process.env.API_URL
   try {
-    const res = await fetch("http://localhost:3000/api/Topics", {
+    const res = await fetch(`${apiUrl}/api/Topics`, {
       cache: "no-store",
     });
 
@@ -25,7 +26,7 @@ const teacherRatings = {};
 
 // Iterate through the comments to calculate the ratings and counts
 comments.forEach((comment) => {
-  const { codigo, rating } = comment;
+  const { codigo, rating, comentario } = comment;
 
   // Check if the teacher's codigo is already in the teacherRatings object
   if (!teacherRatings[codigo]) {
