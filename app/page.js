@@ -3,7 +3,7 @@ import MyNav from '@/components/Navbar';
 import { redirect } from 'next/navigation'
 import debounce from 'lodash/debounce';
 import { revalidatePath } from 'next/cache';
-import MyButton from '@/components/myButton';
+import MyButton from '@/components/MyButton';
 const cheerio = require('cheerio');
 function removeAccents(inputString) {
   return inputString
