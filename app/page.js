@@ -84,7 +84,7 @@ export default function Home() {
           const fname = removeAccents(Tname.replace("FEUP - ", ""));
 
           console.log("t name is", Tname)
-          const res = await fetch("http://localhost:3000/api/Topics", {
+          const res = await fetch("https://feup-rev.vercel.app/api/Topics/api/Topics", {
             method: "POST",
             headers: {
               "Content-type": "application/json",
