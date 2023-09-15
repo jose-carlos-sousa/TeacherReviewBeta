@@ -4,7 +4,7 @@ import MyNav from '@/components/Navbar'
 const getComments= async () => {
 
   try {
-    const res = await fetch(`https://feup-reve.vercel.app/api/Topics`, {
+    const res = await fetch("https://feup-reve.vercel.app/api/Topics", {
       cache: "no-store",
     });
 
