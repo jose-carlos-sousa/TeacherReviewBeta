@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import MyNav from '@/components/Navbar'
+
 const getComments= async () => {
   const apiUrl=process.env.API_URL
   try {
@@ -25,8 +26,11 @@ export default async function Home() {
 const teacherRatings = {};
 
 // Iterate through the comments to calculate the ratings and counts
+const codigoToNameMap =[]
 comments.forEach((comment) => {
-  const { codigo, rating, comentario } = comment;
+  const { codigo, rating, comentario ,name} = comment;
+  codigoToNameMap[codigo]=name
+
 
   // Check if the teacher's codigo is already in the teacherRatings object
   if (!teacherRatings[codigo]) {
@@ -74,7 +78,7 @@ console.log("teacher array",teacherArray);
   />
   <MyNav/>
       <div className='container d-flex'>
-      <h1 className='mx-auto'>Ranking</h1>
+      <h1 className=' mt-5 mx-auto'>Ranking</h1>
       </div>
       <div className='container d-flex '>
 
@@ -86,6 +90,7 @@ console.log("teacher array",teacherArray);
       <div className="card" style={{ width: '18rem' }}>
         <div className="card-body">
           <h1># {index+1}</h1>
+          <h2 className="card-title">{codigoToNameMap[teacherInfo.codigo]}</h2>
           <h5 className="card-title">{teacherInfo.codigo}</h5>
           <p className="card-text">Rating: {teacherInfo.averageRating}</p>
           <a href={`https://sigarra.up.pt/feup/pt/func_geral.formview?p_codigo=${teacherInfo.codigo}`} target="_blank" rel="noopener noreferrer">

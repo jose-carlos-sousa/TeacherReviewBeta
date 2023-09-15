@@ -1,40 +1,95 @@
 import Image from 'next/image';
 import MyNav from '@/components/Navbar';
 import { redirect } from 'next/navigation'
+import debounce from 'lodash/debounce';
+import { revalidatePath } from 'next/cache';
+import MyButton from '@/components/myButton';
+const cheerio = require('cheerio');
+function removeAccents(inputString) {
+  return inputString
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^\x00-\x7F]/g, "");
+}
 
 
 
 export default function Home() {
+
+
     async function handleSubmit(e){
       "use server";
-      const code=e.get("codigo")
-      const num=e.get("num")
-      const comment=e.get("comment") 
-      //Store comment in DB
-      if (!/^\d{6}$/.test(code)) {
-        redirect('/ERROR')
-        return;
-      }
-      
-      // Check if num is a number between 0 and 10
-      else if(isNaN(num) || num < 0 || num > 10) {
-        redirect('/ERROR')
-        return;
-      }
-      
-      // Check if comment is a string
-      else if (typeof comment !== 'string') {
-        redirect('/ERROR')
-        return;
-      }
-      else{
+     
+
+        var code=e.get("codigo")
+        const num=e.get("num")
+        const comment=e.get("comment") 
+        //Store comment in DB
+        code=code.trim()
+        if (!/^\d{6}$/.test(code)) {
+          console.log("ERROR IN CODE")
+         
+          redirect('/ERROR');
+       
+          
+         
+        }
         
+        // Check if num is a number between 0 and 10
+        else if (isNaN(num) || num < 0 || num > 10 || num - parseInt(num) !== 0) {
+          console.log("ERROR IN NUM")
+          redirect('/ERROR');
+   
+      }
+      
+        
+        // Check if comment is a string
+        else if (typeof comment !== 'string') {
+          console.log("ERROR IN COMMENT")
+          redirect('/ERROR')
+        
+        }
+        else{
+          var Tname=""
+          var ok=false
+          const res1 = await fetch(`https://sigarra.up.pt/feup/pt/func_geral.formview?p_codigo=${code}`, {
+          cache: "no-store",
+        });
+      
+        if (!res1.ok) {
+          console.log("ERROR IN FIRST FETCH");
+          console.error(`HTTP Error: ${res1.status} ${res1.statusText}`);
+          redirect('/ERROR');
+          return;
+        }else{ 
+   
+          const htmlBody = await res1.text();
+  
+          // Load the HTML content into cheerio
+          const $ = cheerio.load(htmlBody);
+        
+          // Use cheerio selectors to find and extract the name
+          const nameElement = $('title');
+          const name = nameElement.text().trim();
+        
+          console.log('Name:', name);
+          Tname=name
+          if (Tname!=="FEUP - Registo n�o encontrado"){
+            ok=true
+          }
+      
+       
+        }
+        if(ok){
+          const fname = removeAccents(Tname.replace("FEUP - ", ""));
+
+          console.log("t name is", Tname)
           const res = await fetch("http://localhost:3000/api/Topics", {
             method: "POST",
             headers: {
               "Content-type": "application/json",
             },
-            body: JSON.stringify({ codigo: code, rating: num, comentario: comment }), // Match property names here
+            body: JSON.stringify({ codigo: code, rating: num, comentario: comment , name: fname}), // Match property names here
           });
           
     
@@ -45,11 +100,24 @@ export default function Home() {
             throw new Error("Failed to create acomment");
           }
           redirect('/Submited')
-
-       
+  
+  
+        }else{
+          redirect("/ERROR")
+        }
+         
+          
+          
+         
+          
+  
         
 
       }
+      
+      
+     
+     
       
     }
  
@@ -74,7 +142,7 @@ export default function Home() {
       </div>
       <div className=" mt-5 container d-flex flex-column align-items-center">
        
-      <form action={handleSubmit}>
+      <form action={handleSubmit} >
         <div className=" mt-5 mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
             Código do Professor no Sigarra
@@ -104,6 +172,7 @@ export default function Home() {
             O teu comentário
           </label>
           <textarea
+            maxlength="200"
             className="form-control"
             id="exampleTextarea"
             rows="3"
@@ -111,9 +180,7 @@ export default function Home() {
             name="comment"
          ></textarea>
         </div>
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
+        <MyButton/>
       </form>
       </div>
 

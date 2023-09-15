@@ -4,7 +4,8 @@ const commentSchema = new Schema(
   {
    codigo: Number,
    rating: Number, 
-   comentario: String
+   comentario: String,
+   name: String
   }
 );
 

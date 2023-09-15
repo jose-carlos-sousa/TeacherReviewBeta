@@ -6,12 +6,12 @@ export async function POST(request) {
   try {
     console.log("in post route");
 
-    const { codigo, rating, comentario } = await request.json();
-    console.log("Received Data:", codigo, rating, comentario);
+    const { codigo, rating, comentario,name } = await request.json();
+    console.log("Received Data:", codigo, rating, comentario,name);
 
     await connectMongoDB();
 
-    const createdComment = await Comment.create({ codigo, rating, comentario });
+    const createdComment = await Comment.create({ codigo, rating, comentario,name });
     console.log("Comment Created:", createdComment);
 
     return NextResponse.json({ message: "Comment Created" }, { status: 201 });

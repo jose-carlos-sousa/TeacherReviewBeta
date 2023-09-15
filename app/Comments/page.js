@@ -28,7 +28,7 @@ export default async function Home() {
   />
   <MyNav/>
       <div className='container d-flex'>
-      <h1 className='mx-auto'>Comments</h1>
+      <h1 className='mt-5 mx-auto'>Comments</h1>
       </div>
       <div className=' mt-5 container d-flex '>
         <div className='mx-auto'>

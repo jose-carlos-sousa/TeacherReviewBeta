@@ -47,7 +47,8 @@ export default async function Home({params}) {
   />
   <MyNav/>
   {matchingComments.map((comment ,index) => (
-   <div key={index} className=" ms-5 me-5 border rounded p-3 mb-4">
+   <div key={index} className=" mt-5 ms-5 me-5 border rounded p-3 mb-4">
+    <h2 className="mb-3">Name: {comment.name}</h2>
    <h4 className="mb-3">Rating: {comment.rating}</h4>
    <p className="mb-0">Comment: {comment.comentario}</p>
  </div>
