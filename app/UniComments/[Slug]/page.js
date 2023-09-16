@@ -3,9 +3,9 @@ import Image from 'next/image'
 import MyNav from '@/components/Navbar'
 
 const getComments= async () => {
-  const apiUrl=process.env.API_URL
+ 
   try {
-    const res = await fetch(`${apiUrl}/api/Topics`, {
+    const res = await fetch("https://feup-reve.vercel.app/api/Topics", {
       cache: "no-store",
     });
 

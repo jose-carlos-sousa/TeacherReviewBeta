@@ -4,7 +4,10 @@ import { redirect } from 'next/navigation'
 import debounce from 'lodash/debounce';
 import { revalidatePath } from 'next/cache';
 import MyButton from '@/components/MyButton';
+<<<<<<< HEAD
 import removeSpecialChar from "./removeSpecialChar"
+=======
+>>>>>>> 060d650e50f186117170e29d71788272ceae51de
 const cheerio = require('cheerio');
 
 
@@ -79,7 +82,7 @@ export default function Home() {
           const fname = removeSpecialChar(Tname.replace("FEUP - ", ""));
 
           console.log("t name is", Tname)
-          const res = await fetch("http://localhost:3000/api/Topics", {
+          const res = await fetch("https://feup-reve.vercel.app/api/Topics", {
             method: "POST",
             headers: {
               "Content-type": "application/json",
