@@ -1,5 +1,2 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
-.myBtn.clicked {
-  display: none !important ; /* or visibility: hidden; */
-}

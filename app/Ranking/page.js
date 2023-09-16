@@ -3,6 +3,7 @@ import MyNav from '@/components/Navbar'
 
 const getComments= async () => {
   const apiUrl=process.env.API_URL
+
   try {
     const res = await fetch(`${apiUrl}/api/Topics`, {
       cache: "no-store",
@@ -58,12 +59,25 @@ console.log("teacher average",teacherAverages);
 // Create an array of teacher objects with codigo and averageRating
 const teacherArray = [];
 
+
+
 for (const codigo in teacherAverages) {
-  teacherArray.push({ codigo, averageRating: teacherAverages[codigo] });
+  teacherArray.push({ codigo, averageRating: teacherAverages[codigo], count: teacherRatings[codigo].count });
 }
 
-// Sort the teachers by averageRating in descending order
-teacherArray.sort((a, b) => b.averageRating - a.averageRating);
+// Sort the teachers by averageRating in descending order and by count in descending order
+teacherArray.sort((a, b) => {
+  // First, compare by averageRating in descending order
+  if (b.averageRating !== a.averageRating) {
+    return b.averageRating - a.averageRating;
+  }
+  
+  // If averageRating is the same, compare by count in descending order
+  return b.count - a.count;
+});
+
+// Now, teacherArray contains teachers sorted by average rating and count in descending order
+console.log("teacher array sorted by rating and count", teacherArray);
 
 // Now, teacherArray contains teachers sorted by average rating in descending order
 console.log("teacher array",teacherArray);

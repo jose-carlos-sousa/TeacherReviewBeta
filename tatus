@@ -1,0 +1,36 @@
+[33mcommit e41711c44f8cc7aca9376a3fa0bc6ca237fff0c9[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: unknown <2409jmsousa@gmail.com>
+Date:   Fri Sep 15 11:11:19 2023 +0100
+
+    first commit
+
+[33mcommit 4ad0d3e252b386be567cc60d6bb636cf3678bdce[m[33m ([m[1;31morigin/main[m[33m)[m
+Merge: ec494ad ee4e13b
+Author: unknown <2409jmsousa@gmail.com>
+Date:   Wed Sep 13 19:06:36 2023 +0100
+
+    Resolved conflicts and updated code.
+
+[33mcommit ee4e13baba989831e565b669976961c4519e7c5c[m
+Author: jose-carlos-sousa <139002032+jose-carlos-sousa@users.noreply.github.com>
+Date:   Wed Sep 13 18:52:46 2023 +0100
+
+    Initial commit
+
+[33mcommit ec494ad63449755ea4242817e389d7c51c8a79e7[m
+Author: unknown <2409jmsousa@gmail.com>
+Date:   Wed Sep 13 18:51:10 2023 +0100
+
+    uwu
+
+[33mcommit befa0eca2230241189bef072d57f557b8c4b366e[m
+Author: unknown <2409jmsousa@gmail.com>
+Date:   Tue Sep 12 23:24:54 2023 +0100
+
+    Your commit message here
+
+[33mcommit ca65283079599cfd4351f57ba24df9ab2c49652b[m
+Author: unknown <2409jmsousa@gmail.com>
+Date:   Tue Sep 12 11:06:38 2023 +0100
+
+    Initial commit from Create Next App

@@ -3,14 +3,9 @@ import MyNav from '@/components/Navbar';
 import { redirect } from 'next/navigation'
 import debounce from 'lodash/debounce';
 import { revalidatePath } from 'next/cache';
-import MyButton from '@/components/myButton';
+import MyButton from '@/components/MyButton';
+import removeSpecialChar from "./removeSpecialChar"
 const cheerio = require('cheerio');
-function removeAccents(inputString) {
-  return inputString
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^\x00-\x7F]/g, "");
-}
 
 
 
@@ -81,7 +76,7 @@ export default function Home() {
        
         }
         if(ok){
-          const fname = removeAccents(Tname.replace("FEUP - ", ""));
+          const fname = removeSpecialChar(Tname.replace("FEUP - ", ""));
 
           console.log("t name is", Tname)
           const res = await fetch("http://localhost:3000/api/Topics", {
@@ -172,7 +167,7 @@ export default function Home() {
             O teu comentário
           </label>
           <textarea
-            maxlength="200"
+            maxLength="200"
             className="form-control"
             id="exampleTextarea"
             rows="3"
