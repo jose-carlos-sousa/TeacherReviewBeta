@@ -5,7 +5,7 @@ Welcome to the UP Teacher Review Platform, where students at UP (University of P
 
 ![Captura de Ecrã (61)](https://github.com/jose-carlos-sousa/TreviewFeup/assets/139002032/2e209a7b-1397-42e0-bd83-ab4d25865e3f)
 
-You can check out the live version of the app here: https://feup-review-jose.vercel.app/
+You can check out the live version of the app here: https://teacher-review-beta.vercel.app/
 
 Features
 Teacher Reviews: Students can post reviews about their teachers, sharing valuable insights into the teaching style, course content, and overall experience.
