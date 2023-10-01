@@ -87,9 +87,7 @@ export default function Home() {
         if(ok){
           
           let fname =Tname.replace("FEUP - ", "");
-          console.log(fname)
-          fname=removeSpecialChar(fname)
-          console.log(fname)
+        
 
           console.log("t name is", Tname)
           const res = await fetch("https://prof-review-api.vercel.app/api/Topics", {
