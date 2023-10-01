@@ -2,13 +2,11 @@ import Image from 'next/image'
 import MyNav from '@/components/Navbar'
 
 const getComments= async () => {
-<<<<<<< HEAD
-  const apiUrl=process.env.API_URL
-=======
->>>>>>> 060d650e50f186117170e29d71788272ceae51de
+
+
 
   try {
-    const res = await fetch("https://feup-reve.vercel.app/api/Topics", {
+    const res = await fetch("https://prof-review-api.vercel.app/api/Topics", {
       cache: "no-store",
     });
 

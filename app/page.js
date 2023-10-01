@@ -4,10 +4,8 @@ import { redirect } from 'next/navigation'
 import debounce from 'lodash/debounce';
 import { revalidatePath } from 'next/cache';
 import MyButton from '@/components/MyButton';
-<<<<<<< HEAD
-import removeSpecialChar from "./removeSpecialChar"
-=======
->>>>>>> 060d650e50f186117170e29d71788272ceae51de
+import Head from "next/head"
+
 const cheerio = require('cheerio');
 
 
@@ -60,29 +58,41 @@ export default function Home() {
           redirect('/ERROR');
           return;
         }else{ 
+          const buffer = await res1.arrayBuffer();
+          const decoder = new TextDecoder('iso-8859-1');
+          const htmlBody = decoder.decode(buffer);
    
-          const htmlBody = await res1.text();
+          
+        
+          
   
           // Load the HTML content into cheerio
           const $ = cheerio.load(htmlBody);
-        
+          
           // Use cheerio selectors to find and extract the name
           const nameElement = $('title');
+          
+         
           const name = nameElement.text().trim();
+
         
           console.log('Name:', name);
           Tname=name
-          if (Tname!=="FEUP - Registo n�o encontrado"){
+          if (Tname!=="FEUP - Registo não encontrado"){
             ok=true
           }
       
        
         }
         if(ok){
-          const fname = removeSpecialChar(Tname.replace("FEUP - ", ""));
+          
+          let fname =Tname.replace("FEUP - ", "");
+          console.log(fname)
+          fname=removeSpecialChar(fname)
+          console.log(fname)
 
           console.log("t name is", Tname)
-          const res = await fetch("https://feup-reve.vercel.app/api/Topics", {
+          const res = await fetch("https://prof-review-api.vercel.app/api/Topics", {
             method: "POST",
             headers: {
               "Content-type": "application/json",
@@ -121,6 +131,7 @@ export default function Home() {
  
   return (
     <div>
+    
       <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"

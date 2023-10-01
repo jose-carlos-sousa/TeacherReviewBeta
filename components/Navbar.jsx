@@ -7,6 +7,9 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 function MyNav() {
   return (
     <div>
+       
+        
+    
    <Navbar expand="lg" className=" bg-body-tertiary">
       <Container>
         <Navbar.Brand href="/">Prof Review FEUP</Navbar.Brand>
